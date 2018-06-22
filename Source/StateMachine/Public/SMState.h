@@ -6,6 +6,8 @@
 
 #include "SMState.generated.h"
 
+class ISMStateMachineInterface;
+
 // UObject base class
 UCLASS(Abstract)
 class STATEMACHINE_API USMState 
@@ -19,4 +21,10 @@ public:
 	FName StateName;
 
 	FName GetName_Implementation() const override { return StateName; }
+
+	void InitState_Implementation(const TScriptInterface<ISMStateMachineInterface>& InMachine) override;
+
+private:
+	UPROPERTY()
+	TScriptInterface<ISMStateMachineInterface> StateMachine;
 };

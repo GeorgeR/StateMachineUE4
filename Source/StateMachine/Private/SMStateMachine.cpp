@@ -1,6 +1,5 @@
 #include "SMStateMachine.h"
 
-
 bool USMStateMachine::GoToState_Implementation(FName StateName)
 {
 	if (!States.Contains(StateName))
@@ -9,9 +8,9 @@ bool USMStateMachine::GoToState_Implementation(FName StateName)
 	auto NextState = States[StateName];
 
 	if (CurrentState != nullptr)
-		CurrentState->ExitState(NextState);
+		ISMStateMachineInterface::Execute_ExitState(CurrentState.GetObject(), NextState);
 
-	NextState->EnterState(CurrentState);
+	ISMStateMachineInterface::Execute_EnterState(NextState.GetObject(), CurrentState);
 	CurrentState = NextState;
 
 	return true;

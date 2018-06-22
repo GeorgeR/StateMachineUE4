@@ -24,14 +24,14 @@ public:
 	virtual FName GetName_Implementation() const = 0;
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "StateMachine|State")
-	void InitState(TScriptInterface<ISMStateMachineInterface>& InMachine);
-	virtual void InitState_Implementation(TScriptInterface<ISMStateMachineInterface>& InMachine) { }
+	void InitState(const TScriptInterface<ISMStateMachineInterface>& InMachine);
+	virtual void InitState_Implementation(const TScriptInterface<ISMStateMachineInterface>& InMachine) { }
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "StateMachine|State")
-	void EnterState(TScriptInterface<ISMStateInterface>& InPreviousState);
-	virtual void EnterState_Implementation(TScriptInterface<ISMStateInterface>& InPreviousState) { }
+	void EnterState(const TScriptInterface<ISMStateInterface>& InPreviousState);
+	virtual void EnterState_Implementation(const TScriptInterface<ISMStateInterface>& InPreviousState) { }
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "StateMachine|State")
-	void ExitState(TScriptInterface<ISMStateInterface>& InNextState);
-	virtual void ExitState_Implementation(TScriptInterface<ISMStateInterface>& InNextState) { }
+	void ExitState(const TScriptInterface<ISMStateInterface>& InNextState);
+	virtual void ExitState_Implementation(const TScriptInterface<ISMStateInterface>& InNextState) { }
 };
