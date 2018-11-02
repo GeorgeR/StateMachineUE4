@@ -5,16 +5,19 @@ public class StateMachine : ModuleRules
 	public StateMachine(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
-		
-		PublicIncludePaths.AddRange(
-			new string[] {
-				"StateMachine/Public"
-			});
 
-		PrivateIncludePaths.AddRange(
-			new string[] {
-				"StateMachine/Private",
-			});
+	    if (Target.Version.MinorVersion <= 19)
+	    {
+            PublicIncludePaths.AddRange(
+			    new string[] {
+				    "Public"
+			    });
+
+		    PrivateIncludePaths.AddRange(
+			    new string[] {
+				    "Private",
+			    });
+        }
 
 		PublicDependencyModuleNames.AddRange(
 			new string[]
