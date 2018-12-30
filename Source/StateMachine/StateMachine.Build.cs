@@ -20,23 +20,13 @@ public class StateMachine : ModuleRules
         }
 
 		PublicDependencyModuleNames.AddRange(
-			new string[]
-			{
+			new string[] {
 				"Core",
-			    "CoreUObject",
-			    "Engine",
+			    "CoreUObject"
             });
 
 		PrivateDependencyModuleNames.AddRange(
-			new string[]
-			{
-				"Slate",
-				"SlateCore",
-			});
-
-		DynamicallyLoadedModuleNames.AddRange(
-			new string[]
-			{
+			new string[] {
 			});
 	}
 }
