@@ -24,29 +24,29 @@ public:
 	virtual TScriptInterface<ISMStateInterface> GetDefaultState_Implementation() { return nullptr; }
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "StateMachine|StateMachine")
-	bool GoToState(FName StateName);
-	virtual bool GoToState_Implementation(FName StateName) = 0;
+	bool GoToState(const FString& StateName);
+	virtual bool GoToState_Implementation(const FString& StateName) = 0;
 };
 
-#define DECLARE_STATE_MACHINE()												\
-public:																		\
-	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly)							\
-	FName StateName;														\
-																			\
-	FName GetName_Implementation() const override { return StateName; }		\
-																			\
-	bool GoToState_Implementation(FName StateName) override;				\
-																			\
-private:																	\
-	UPROPERTY()																\
-	TMap<FName, TScriptInterface<ISMStateInterface>> States;				\
-																			\
-	UPROPERTY()																\
+#define DECLARE_STATE_MACHINE()														\
+public:																				\
+	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly)									\
+	FString StateName;																\
+																					\
+	FString GetName_Implementation() const override { return StateName; }			\
+																					\
+	bool GoToState_Implementation(const FString& StateName) override;				\
+																					\
+private:																			\
+	UPROPERTY()																		\
+	TMap<FString, TScriptInterface<ISMStateInterface>> States;						\
+																					\
+	UPROPERTY()																		\
 	TScriptInterface<ISMStateInterface> CurrentState;
 
 
 #define DEFINE_STATE_MACHINE(ClassName)															\
-	bool ClassName::GoToState_Implementation(FName StateName)									\
+	bool ClassName::GoToState_Implementation(const FString& StateName)							\
 	{																							\
 		if (!States.Contains(StateName))														\
 			return false;																		\

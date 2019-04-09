@@ -16,13 +16,13 @@ class STATEMACHINE_API USMStateMachine
 	GENERATED_BODY()
 
 public:
-	FName GetName_Implementation() const override { return StateName; }
+	FString GetName_Implementation() const override { return StateName; }
 
-	bool GoToState_Implementation(FName StateName) override;
+	bool GoToState_Implementation(const FString& StateName) override;
 
 private:
 	UPROPERTY()
-	TMap<FName, TScriptInterface<ISMStateInterface>> States;
+	TMap<FString, TScriptInterface<ISMStateInterface>> States;
 
 	UPROPERTY()
 	TScriptInterface<ISMStateInterface> CurrentState;

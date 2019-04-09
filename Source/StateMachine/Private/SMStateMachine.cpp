@@ -1,6 +1,6 @@
 #include "SMStateMachine.h"
 
-bool USMStateMachine::GoToState_Implementation(FName StateName)
+bool USMStateMachine::GoToState_Implementation(const FString& StateName)
 {
 	if (!States.Contains(StateName))
 		return false;

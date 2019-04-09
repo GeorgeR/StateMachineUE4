@@ -1,6 +1,6 @@
 #include "SMState.h"
 
-void USMState::InitState_Implementation(const TScriptInterface<ISMStateMachineInterface>& InMachine)
+void USMState::InitState_Implementation(const TScriptInterface<ISMStateMachineInterface>& Machine)
 {
-	StateMachine = InMachine;
+	StateMachine = Machine;
 }

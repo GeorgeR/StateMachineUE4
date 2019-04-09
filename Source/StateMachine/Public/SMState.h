@@ -18,11 +18,11 @@ class STATEMACHINE_API USMState
 	
 public:
 	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly)
-	FName StateName;
+	FString StateName;
 
-	FName GetName_Implementation() const override { return StateName; }
+	FString GetName_Implementation() const override { return StateName; }
 
-	void InitState_Implementation(const TScriptInterface<ISMStateMachineInterface>& InMachine) override;
+	void InitState_Implementation(const TScriptInterface<ISMStateMachineInterface>& Machine) override;
 
 private:
 	UPROPERTY()

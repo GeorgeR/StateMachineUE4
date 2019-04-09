@@ -20,18 +20,18 @@ class STATEMACHINE_API ISMStateInterface
 
 public:
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "StateMachine|State")
-	FName GetName() const;
-	virtual FName GetName_Implementation() const = 0;
+	FString GetName() const;
+	virtual FString GetName_Implementation() const = 0;
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "StateMachine|State")
-	void InitState(const TScriptInterface<ISMStateMachineInterface>& InMachine);
-	virtual void InitState_Implementation(const TScriptInterface<ISMStateMachineInterface>& InMachine) { }
+	void InitState(const TScriptInterface<ISMStateMachineInterface>& Machine);
+	virtual void InitState_Implementation(const TScriptInterface<ISMStateMachineInterface>& Machine) { }
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "StateMachine|State")
-	void EnterState(const TScriptInterface<ISMStateInterface>& InPreviousState);
-	virtual void EnterState_Implementation(const TScriptInterface<ISMStateInterface>& InPreviousState) { }
+	void EnterState(const TScriptInterface<ISMStateInterface>& PreviousState);
+	virtual void EnterState_Implementation(const TScriptInterface<ISMStateInterface>& PreviousState) { }
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "StateMachine|State")
-	void ExitState(const TScriptInterface<ISMStateInterface>& InNextState);
-	virtual void ExitState_Implementation(const TScriptInterface<ISMStateInterface>& InNextState) { }
+	void ExitState(const TScriptInterface<ISMStateInterface>& NextState);
+	virtual void ExitState_Implementation(const TScriptInterface<ISMStateInterface>& NextState) { }
 };
