@@ -24,34 +24,34 @@ public:
 	virtual TScriptInterface<ISMStateInterface> GetDefaultState_Implementation() { return nullptr; }
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "StateMachine|StateMachine")
-	bool GoToState(const FString& StateName);
-	virtual bool GoToState_Implementation(const FString& StateName) = 0;
+	bool GoToState(const FString& InStateName);
+	virtual bool GoToState_Implementation(const FString& InStateName) = 0;
 };
 
-#define DECLARE_STATE_MACHINE()														\
-public:																				\
-	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly)									\
-	FString StateName;																\
-																					\
-	FString GetName_Implementation() const override { return StateName; }			\
-																					\
-	bool GoToState_Implementation(const FString& StateName) override;				\
-																					\
-private:																			\
-	UPROPERTY()																		\
-	TMap<FString, TScriptInterface<ISMStateInterface>> States;						\
-																					\
-	UPROPERTY()																		\
+#define DECLARE_STATE_MACHINE()															\
+public:																					\
+	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly)										\
+	FString StateName;																	\
+																						\
+	FORCEINLINE FString GetName_Implementation() const override { return StateName; }	\
+																						\
+	bool GoToState_Implementation(const FString& InStateName) override;					\
+																						\
+private:																				\
+	UPROPERTY()																			\
+	TMap<FString, TScriptInterface<ISMStateInterface>> States;							\
+																						\
+	UPROPERTY()																			\
 	TScriptInterface<ISMStateInterface> CurrentState;
 
 
 #define DEFINE_STATE_MACHINE(ClassName)															\
-	bool ClassName::GoToState_Implementation(const FString& StateName)							\
+	bool ClassName::GoToState_Implementation(const FString& InStateName)						\
 	{																							\
-		if (!States.Contains(StateName))														\
+		if (!States.Contains(InStateName))														\
 			return false;																		\
 																								\
-		auto NextState = States[StateName];														\
+		auto NextState = States[InStateName];													\
 																								\
 		if (CurrentState != nullptr)															\
 			ISMStateMachineInterface::Execute_ExitState(CurrentState.GetObject(), NextState);	\
