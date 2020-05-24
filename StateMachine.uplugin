@@ -16,7 +16,7 @@
 	"Modules": [
 		{
 			"Name": "StateMachine",
-			"Type": "Developer",
+			"Type": "Runtime",
 			"LoadingPhase": "Default"
 		}
 	]
